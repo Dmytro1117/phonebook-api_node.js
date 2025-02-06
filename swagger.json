@@ -1,20 +1,22 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Phonebook API",
-    "description": "Backend for phonebook",
+    "title": "Phonebook API docs",
+    "description": "The API for the Phonebook",
     "version": "1.0.0"
   },
   "servers": [
     {
-      "url": "https://contact-book-backend-hgw7.onrender.com/api"
+      "url": "https://phonebook-api-backend-v92w.onrender.com/api"
     }
   ],
   "paths": {
     "/auth/register": {
       "post": {
         "summary": "Registration new user",
-        "tags": ["Authorization"],
+        "tags": [
+          "Authorization"
+        ],
         "operationId": "RegistrationNewUser",
         "requestBody": {
           "required": true,
@@ -69,7 +71,9 @@
     "/auth/verify/{verificationToken}": {
       "get": {
         "summary": "Verification User's email",
-        "tags": ["Authorization"],
+        "tags": [
+          "Authorization"
+        ],
         "operationId": "VerificationEmail",
         "parameters": [
           {
@@ -122,7 +126,9 @@
     "/auth/verify/resend-email": {
       "post": {
         "summary": "Resend verification token",
-        "tags": ["Authorization"],
+        "tags": [
+          "Authorization"
+        ],
         "operationId": "ResendVerification",
         "requestBody": {
           "required": true,
@@ -195,7 +201,9 @@
     "/auth/login": {
       "post": {
         "summary": "Login User",
-        "tags": ["Authorization"],
+        "tags": [
+          "Authorization"
+        ],
         "operationId": "LoginUser",
         "requestBody": {
           "required": true,
@@ -275,7 +283,9 @@
     "/auth/current": {
       "get": {
         "summary": "Get user's info",
-        "tags": ["Authorization"],
+        "tags": [
+          "Authorization"
+        ],
         "operationId": "getUserInfo",
         "responses": {
           "200": {
@@ -309,7 +319,9 @@
     "/auth/logout": {
       "post": {
         "summary": "Logout a user",
-        "tags": ["Authorization"],
+        "tags": [
+          "Authorization"
+        ],
         "operationId": "logoutUser",
         "responses": {
           "204": {
@@ -336,7 +348,9 @@
     "/user/subscription": {
       "patch": {
         "summary": "Patch subscription user",
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "operationId": "patchSubscription",
         "requestBody": {
           "required": true,
@@ -347,7 +361,11 @@
                 "properties": {
                   "subscription": {
                     "type": "string",
-                    "enum": ["starter", "pro", "business"],
+                    "enum": [
+                      "starter",
+                      "pro",
+                      "business"
+                    ],
                     "example": "pro"
                   }
                 }
@@ -403,7 +421,9 @@
     "/user/avatars": {
       "patch": {
         "summary": "Uploads an image user",
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "operationId": "uploadImage",
         "requestBody": {
           "required": true,
@@ -460,7 +480,9 @@
     "/contacts": {
       "get": {
         "summary": "Get all contacts",
-        "tags": ["Сontacts"],
+        "tags": [
+          "Сontacts"
+        ],
         "operationId": "getAllContacts",
         "parameters": [
           {
@@ -490,7 +512,7 @@
             "required": false,
             "schema": {
               "type": "boolean",
-              "example": false
+              "example": true
             }
           }
         ],
@@ -539,7 +561,9 @@
       },
       "post": {
         "summary": "Add new contact",
-        "tags": ["Сontacts"],
+        "tags": [
+          "Сontacts"
+        ],
         "operationId": "postNewContact",
         "requestBody": {
           "required": true,
@@ -608,7 +632,9 @@
     "/contacts/{contact_Id}": {
       "get": {
         "summary": "Get contact by Id",
-        "tags": ["Сontacts"],
+        "tags": [
+          "Сontacts"
+        ],
         "operationId": "getContactById",
         "parameters": [
           {
@@ -693,7 +719,9 @@
       },
       "put": {
         "summary": "Update contact by Id",
-        "tags": ["Сontacts"],
+        "tags": [
+          "Сontacts"
+        ],
         "operationId": "putContactById",
         "parameters": [
           {
@@ -718,13 +746,13 @@
                     "type": "string",
                     "example": "Bob Jonson"
                   },
-                  "email": {
-                    "type": "string",
-                    "example": "gutum@sci.net"
-                  },
                   "phone": {
                     "type": "string",
                     "example": "(666) 555-6666"
+                  },
+                  "favorite": {
+                    "type": "boolean",
+                    "example": false
                   },
                   "avatar": {
                     "type": "string",
@@ -802,7 +830,9 @@
       },
       "delete": {
         "summary": "Delete contact by Id",
-        "tags": ["Сontacts"],
+        "tags": [
+          "Сontacts"
+        ],
         "operationId": "deleteContactById",
         "parameters": [
           {
@@ -883,7 +913,9 @@
     "/contacts/{contact_Id}/favorite": {
       "patch": {
         "summary": "Patch favorite by Id",
-        "tags": ["Сontacts"],
+        "tags": [
+          "Сontacts"
+        ],
         "operationId": "patchContactById",
         "parameters": [
           {
@@ -982,7 +1014,11 @@
     "schemas": {
       "Registration": {
         "type": "object",
-        "required": ["name", "email", "password"],
+        "required": [
+          "name",
+          "email",
+          "password"
+        ],
         "properties": {
           "name": {
             "type": "string",
@@ -1019,7 +1055,11 @@
               },
               "subscription": {
                 "type": "string",
-                "enum": ["starter", "pro", "business"],
+                "enum": [
+                  "starter",
+                  "pro",
+                  "business"
+                ],
                 "example": "starter"
               }
             }
@@ -1028,7 +1068,10 @@
       },
       "Login": {
         "type": "object",
-        "required": ["email", "password"],
+        "required": [
+          "email",
+          "password"
+        ],
         "properties": {
           "email": {
             "type": "string",
@@ -1043,7 +1086,10 @@
       },
       "Contact": {
         "type": "object",
-        "required": ["name", "email", "phone"],
+        "required": [
+          "name",
+          "phone"
+        ],
         "properties": {
           "_id": {
             "type": "string",
@@ -1052,10 +1098,6 @@
           "name": {
             "type": "string",
             "example": "John Robson"
-          },
-          "email": {
-            "type": "string",
-            "example": "email@sci.net"
           },
           "phone": {
             "type": "string",

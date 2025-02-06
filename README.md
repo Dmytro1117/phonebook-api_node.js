@@ -38,4 +38,4 @@
 
 `Хмарні послуги:` Cloudinary для зберігання фотографій користувачів.
 
-`Посилання на swagger-docs:` https://contact-book-backend-hgw7.onrender.com/api-docs
+`Посилання на swagger-docs:` https://phonebook-api-backend-v92w.onrender.com/api-docs
