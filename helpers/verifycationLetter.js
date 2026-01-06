@@ -2,7 +2,7 @@ const { BASE_URL } = process.env;
 
 const verifycationLetter = ({ email, verificationToken }) => ({
   to: email,
-  subject: "Phonebook (Підтвердження пошти)",
+  subject: "Підтвердження пошти",
   html: `
 <!DOCTYPE html>
 <html>
@@ -22,7 +22,7 @@ const verifycationLetter = ({ email, verificationToken }) => ({
             <!-- Шапка -->
             <tr>
               <td align="center" bgcolor="#3a97e8" style="padding: 20px;">
-                <h1 style="color: #ffffff; font-size: 22px; margin: 0; letter-spacing: 1px;">Phonebook App</h1>
+                <h1 style="color: #ffffff; font-size: 22px; margin: 0; letter-spacing: 1px;">Phonebook</h1>
               </td>
             </tr>
 
