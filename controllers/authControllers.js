@@ -47,16 +47,7 @@ const register = async (req, res) => {
 
   const verifyEmail = verifycationLetter({ email, verificationToken });
 
-  // await sendVerifyEmail(verifyEmail);
-
-  try {
-    await sendVerifyEmail(verifyEmail);
-  } catch (error) {
-    console.error("ПОМИЛКА SMTP:", error.message);
-    // Временно закомментируй throw error, чтобы проверить,
-    // создастся ли юзер без ошибки 500, если письмо не ушло.
-    throw error;
-  }
+  await sendVerifyEmail(verifyEmail);
 
   res.status(201).json({
     status: "Created",
@@ -108,16 +99,7 @@ const resendVerifyEmail = async (req, res) => {
     verificationToken: user.verificationToken,
   });
 
-  // await sendVerifyEmail(verifyEmail);
-
-  try {
-    await sendVerifyEmail(verifyEmail);
-  } catch (error) {
-    console.error("ПОМИЛКА SMTP:", error.message);
-    // Временно закомментируй throw error, чтобы проверить,
-    // создастся ли юзер без ошибки 500, если письмо не ушло.
-    // throw error;
-  }
+  await sendVerifyEmail(verifyEmail);
 
   res.json({
     status: "Succes",
