@@ -14,15 +14,26 @@ const nodemailerConfig = {
 
 const transport = nodemailer.createTransport(nodemailerConfig);
 
+// const sendVerifyEmail = async (data) => {
+//   try {
+//     const email = { ...data, from: "moiseenkodmitriy1177@gmail.com" };
+//     await transport.sendMail(email);
+//     console.log("Email send success");
+//     return true;
+//   } catch (error) {
+//     console.log(error.message);
+//     throw error;
+//   }
+// };
+
 const sendVerifyEmail = async (data) => {
   try {
     const email = { ...data, from: "moiseenkodmitriy1177@gmail.com" };
-    await transport.sendMail(email);
-    console.log("Email send success");
+    const result = await transport.sendMail(email);
+    console.log("Email sent successfully:", result.messageId);
     return true;
   } catch (error) {
-    console.log(error.message);
-    throw error;
+    console.error("NODEMAILER ERROR:", error.message);
   }
 };
 
