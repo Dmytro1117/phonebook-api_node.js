@@ -15,7 +15,7 @@ const transport = nodemailer.createTransport(nodemailerConfig);
 
 const sendVerifyEmail = async (data) => {
   try {
-    const email = { ...data, from: "moiseenkodmitriy@i.ua" };
+    const email = { ...data, from: "moiseenkodmitriy1177@gmail.com" };
     await transport.sendMail(email);
     console.log("Email send success");
     return true;
