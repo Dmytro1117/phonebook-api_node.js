@@ -99,7 +99,16 @@ const resendVerifyEmail = async (req, res) => {
     verificationToken: user.verificationToken,
   });
 
-  await sendVerifyEmail(verifyEmail);
+  // await sendVerifyEmail(verifyEmail);
+
+  try {
+    await sendVerifyEmail(verifyEmail);
+  } catch (error) {
+    console.error("ПОМИЛКА SMTP:", error.message);
+    // Временно закомментируй throw error, чтобы проверить,
+    // создастся ли юзер без ошибки 500, если письмо не ушло.
+    // throw error;
+  }
 
   res.json({
     status: "Succes",
