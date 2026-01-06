@@ -4,15 +4,15 @@ const { BREVO_PASSWORD } = process.env;
 
 const nodemailerConfig = {
   host: "smtp-relay.brevo.com",
-  port: 465,
-  secure: true,
+  port: 587,
+  // secure: true,
   auth: {
     user: "moiseenkodmitriy@i.ua",
     pass: BREVO_PASSWORD,
   },
-  tls: {
-    rejectUnauthorized: false,
-  },
+  // tls: {
+  //   rejectUnauthorized: false,
+  // },
 };
 
 const transport = nodemailer.createTransport(nodemailerConfig);
