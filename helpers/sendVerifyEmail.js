@@ -1,17 +1,17 @@
 const nodemailer = require("nodemailer");
 
-const { BREVO_PASSWORD } = process.env;
+const { GMAIL_USER } = process.env;
+const { GMAIL_PASS } = process.env;
 
-// Використовуйте ці налаштування для Render
 const nodemailerConfig = {
-  host: "smtp-relay.brevo.com",
-  port: 465, // Змінюємо з 587 на 465
-  secure: true, // Для 465 порту обов'язково TRUE
+  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
   auth: {
-    user: "moiseenkodmitriy@i.ua",
-    pass: BREVO_PASSWORD,
+    user: GMAIL_USER,
+    pass: GMAIL_PASS,
   },
-  // Додайте ці параметри, щоб уникнути проблем із сертифікатами на сервері
   tls: {
     rejectUnauthorized: false,
   },
@@ -23,18 +23,50 @@ const sendVerifyEmail = async (data) => {
   try {
     const email = {
       ...data,
-      from: "moiseenkodmitriy1177@6601244.brevosend.com",
+      from: GMAIL_USER,
     };
-    const info = await transport.sendMail(email);
-    console.log("Email sent: " + info.response);
-    return true;
+    const result = await transport.sendMail(email);
+    console.log("Email sent successfully via Gmail");
+    return result;
   } catch (error) {
-    console.error("NODEMAILER ERROR:", error.message);
-    throw error; // Викидаємо помилку, щоб контролер її впіймав
+    console.error("GMAIL SMTP ERROR:", error.message);
+    throw error;
   }
 };
 
 module.exports = { sendVerifyEmail };
+
+// const nodemailerConfig = {
+//   host: "smtp-relay.brevo.com",
+//   port: 465,
+//   secure: true,
+//   auth: {
+//     user: "moiseenkodmitriy@i.ua",
+//     pass: BREVO_PASSWORD,
+//   },
+//   tls: {
+//     rejectUnauthorized: false,
+//   },
+// };
+
+// const transport = nodemailer.createTransport(nodemailerConfig);
+
+// const sendVerifyEmail = async (data) => {
+//   try {
+//     const email = {
+//       ...data,
+//       from: "moiseenkodmitriy1177@6601244.brevosend.com",
+//     };
+//     const info = await transport.sendMail(email);
+//     console.log("Email sent: " + info.response);
+//     return true;
+//   } catch (error) {
+//     console.error("NODEMAILER ERROR:", error.message);
+//     throw error;
+//   }
+// };
+
+// module.exports = { sendVerifyEmail };
 
 // const nodemailerConfig = {
 //   host: "smtp-relay.brevo.com",
