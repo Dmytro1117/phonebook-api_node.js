@@ -10,6 +10,9 @@ const nodemailerConfig = {
     user: "moiseenkodmitriy@i.ua",
     pass: BREVO_PASSWORD,
   },
+  tls: {
+    rejectUnauthorized: false,
+  },
 };
 
 const transport = nodemailer.createTransport(nodemailerConfig);
