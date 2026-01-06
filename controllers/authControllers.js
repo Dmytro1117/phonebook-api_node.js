@@ -55,7 +55,7 @@ const register = async (req, res) => {
     console.error("ПОМИЛКА SMTP:", error.message);
     // Временно закомментируй throw error, чтобы проверить,
     // создастся ли юзер без ошибки 500, если письмо не ушло.
-    // throw error;
+    throw error;
   }
 
   res.status(201).json({
