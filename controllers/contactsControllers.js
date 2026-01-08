@@ -122,7 +122,7 @@ const deleteContactById = async (req, res) => {
 
   const deletedContact = await Contact.findByIdAndDelete(contactId)
     .select("-createdAt -updatedAt")
-    .populate("owner", "_id name email");
+    .populate("owner", "_id name email subscription");
   if (!deletedContact) {
     throw new NotFound(`Sorry, contact with id=${contactId} not found`);
   }
@@ -135,6 +135,7 @@ const deleteContactById = async (req, res) => {
     code: 200,
     message: "Delete success",
     deletedContact,
+    newSubscription,
   });
 };
 
