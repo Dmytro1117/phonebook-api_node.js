@@ -8,6 +8,7 @@ const { sendVerifyEmail } = require("../helpers/sendVerifyEmail");
 const User = require("../models/User");
 const cloudinaryDownload = require("../helpers/cloudinaryDownload");
 const { verifycationLetter } = require("../helpers/verifycationLetter");
+const calculateSubscription = require("../helpers/calculateSubscription");
 const { controllerWrapper } = require("../decorators/controllerWrapper");
 
 const { SECRET_KEY } = process.env;
@@ -145,7 +146,13 @@ const login = async (req, res) => {
 };
 
 const curent = async (req, res) => {
-  const { name, email, subscription, avatar } = req.user;
+  const { _id: owner, name, email, subscription, avatar } = req.user;
+
+  const actualSubscription = await calculateSubscription(owner);
+  if (actualSubscription !== subscription) {
+    await User.findByIdAndUpdate(owner, { subscription: actualSubscription });
+  }
+
   res.json({
     status: "Succes",
     code: 200,

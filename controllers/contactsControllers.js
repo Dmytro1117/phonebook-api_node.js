@@ -1,7 +1,9 @@
 const { NotFound } = require("http-errors");
+const User = require("../models/User");
 const Contact = require("../models/Contact");
 const { controllerWrapper } = require("../decorators/controllerWrapper");
 const cloudinaryDownload = require("../helpers/cloudinaryDownload");
+const calculateSubscription = require("../helpers/calculateSubscription");
 
 const allContacts = async (req, res) => {
   const { page = 1, limit = 20, favorite = null } = req.query;
@@ -49,10 +51,14 @@ const addOneContact = async (req, res) => {
   }
 
   const contact = await Contact.create({ ...req.body, cover, owner });
+
+  const newSubscription = await calculateSubscription(owner);
+  await User.findByIdAndUpdate(owner, { subscription: newSubscription });
+
   const addedContact = await Contact.findById(
     contact._id,
     "-createdAt -updatedAt"
-  ).populate("owner", "_id name email");
+  ).populate("owner", "_id name email subscription");
 
   res.status(201).json({
     status: "Created",
@@ -112,6 +118,7 @@ const updateFavorite = async (req, res) => {
 
 const deleteContactById = async (req, res) => {
   const { contactId } = req.params;
+  const { _id: owner } = req.user;
 
   const deletedContact = await Contact.findByIdAndDelete(contactId)
     .select("-createdAt -updatedAt")
@@ -119,6 +126,10 @@ const deleteContactById = async (req, res) => {
   if (!deletedContact) {
     throw new NotFound(`Sorry, contact with id=${contactId} not found`);
   }
+
+  const newSubscription = await calculateSubscription(owner);
+  await User.findByIdAndUpdate(owner, { subscription: newSubscription });
+
   res.json({
     status: "Succes",
     code: 200,
