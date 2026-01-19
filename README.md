@@ -1,13 +1,12 @@
-# Phonebook API (Backend)
+# Phonebook API
 
 ## Tech Stack
 
-![Node.js](https://img.shields.io)
-![Swagger](https://img.shields.io)
-![JavaScript](https://img.shields.io)
-![MongoDB](https://img.shields.io)
-![Docker](https://img.shields.io)
-![Postman](https://img.shields.io)
+![Node](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white)
 
 **Technologies:** Node.js, Swagger, JavaScript, Git, GitHub, NPM, Docker, Postman.
 
