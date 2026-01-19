@@ -1,33 +1,33 @@
-# Phonebook API (backend)
+# Phonebook API (Backend)
 
-## Стек технологій
+## Tech Stack
 
-![Node](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=white)
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
-![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
-![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
-![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
-![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white)
+![Node.js](https://img.shields.io)
+![Swagger](https://img.shields.io)
+![JavaScript](https://img.shields.io)
+![MongoDB](https://img.shields.io)
+![Docker](https://img.shields.io)
+![Postman](https://img.shields.io)
 
-## Опис проекту
+**Technologies:** Node.js, Swagger, JavaScript, Git, GitHub, NPM, Docker, Postman.
 
-`Phonebook API - Керуйте своїми контактами:` Можливість зберігати та організовувати свій список контактів, створювати нові контакти, змінювати їх статуси, додавати фотографії user та самим контактним номерам.
+## Project Description
 
-`Основні функції:`
+**Phonebook API** is a contact management service that allows users to securely store and organize their contact lists. Users can create new contacts, manage their statuses, and upload profile pictures for both themselves and their contacts.
 
-- Реєстрація та Авторизація.
-- Верифікація електронної пошти.
-- Додавання фотографії user.
-- Cтворення нових контактів (ім'я, номер телефону, додавання до улюблених, фотографій, статус користувачп (Standart, Pro, Vip)).
+### Key Features:
 
-## Технічні характеристики
+- **User Registration & Authorization:** Secure JWT-based authentication.
+- **Email Verification:** Account confirmation via automated emails.
+- **Profile Management:** Capability to upload and update user avatars.
+- **Contact Management:** Create, edit, and delete contacts (including name, phone number, and "Favorite" status).
+- **Media Support:** Upload photos for specific contacts.
+- **Subscription Tiers:** Manage user statuses (Standard, Pro, Vip).
 
-`Зберігання даних:` Дані користувачів та контакти зберігаються в базі даних MongoDB.
+## Technical Specifications
 
-`Забезпечення безпеки:` Захист особистих даних користувачів, включаючи шифрування паролів та перевірку доступу до ресурсів.
+- **Data Storage:** User and contact data are stored in a **MongoDB** database.
+- **Security:** High-level protection of personal data, including password hashing (bcrypt) and resource access validation.
+- **Cloud Integration:** Integrated with **Cloudinary** for efficient storage and management of user images and avatars.
 
-`Хмарні послуги:` Cloudinary для зберігання фотографій користувачів.
-
-`Посилання на swagger-docs:` https://phonebook-api-backend-v92w.onrender.com/api-docs
+🔗 **[Live Swagger Documentation](https://phonebook-api-backend-v92w.onrender.com/api-docs)**
