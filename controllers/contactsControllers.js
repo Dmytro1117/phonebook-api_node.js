@@ -3,6 +3,7 @@ const User = require("../models/User");
 const Contact = require("../models/Contact");
 const { controllerWrapper } = require("../decorators/controllerWrapper");
 const cloudinaryDownload = require("../helpers/cloudinaryDownload");
+const cloudinaryDelete = require("../helpers/cloudinaryDelete");
 const calculateSubscription = require("../helpers/calculateSubscription");
 
 const allContacts = async (req, res) => {
@@ -27,7 +28,7 @@ const contactById = async (req, res) => {
   const { contactId } = req.params;
   const contact = await Contact.findById(
     contactId,
-    "-createdAt -updatedAt"
+    "-createdAt -updatedAt",
   ).populate("owner", "_id name email");
   if (!contact) {
     throw new NotFound(`Sorry, contact with id=${contactId} not found`);
@@ -57,7 +58,7 @@ const addOneContact = async (req, res) => {
 
   const addedContact = await Contact.findById(
     contact._id,
-    "-createdAt -updatedAt"
+    "-createdAt -updatedAt",
   ).populate("owner", "_id name email subscription");
 
   res.status(201).json({
@@ -79,9 +80,12 @@ const updateContactById = async (req, res) => {
   let { cover } = await Contact.findById(contactId);
 
   if (req.file) {
-    cover = await cloudinaryDownload(req.file, "contacts", [
-      { width: 250, height: 250 },
-    ]);
+    cover = await cloudinaryDownload(
+      req.file,
+      "contacts",
+      [{ width: 250, height: 250 }],
+      contactId,
+    );
   }
 
   const updateContact = await Contact.findByIdAndUpdate(contactId, {
@@ -120,9 +124,23 @@ const deleteContactById = async (req, res) => {
   const { contactId } = req.params;
   const { _id: owner } = req.user;
 
-  const deletedContact = await Contact.findByIdAndDelete(contactId)
+  const photo = await Contact.findOne({ _id: contactId });
+
+  if (photo.cover) {
+    await cloudinaryDelete(photo.cover);
+  }
+
+  // const deletedContact = await Contact.findByIdAndDelete(contactId)
+  //   .select("-createdAt -updatedAt")
+  //   .populate("owner", "_id name email subscription");
+
+  const deletedContact = await Contact.findOneAndDelete({
+    _id: contactId,
+    owner,
+  })
     .select("-createdAt -updatedAt")
     .populate("owner", "_id name email subscription");
+
   if (!deletedContact) {
     throw new NotFound(`Sorry, contact with id=${contactId} not found`);
   }

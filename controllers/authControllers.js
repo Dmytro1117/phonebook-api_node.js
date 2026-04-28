@@ -21,7 +21,7 @@ const register = async (req, res) => {
   if (user) {
     throw new createErrorUnauthorized(
       409,
-      `Sorry, user with email ${email} in use`
+      `Sorry, user with email ${email} in use`,
     );
   }
 
@@ -29,7 +29,7 @@ const register = async (req, res) => {
 
   if (req.file) {
     avatar = await cloudinaryDownload(req.file, "avatars", [
-      { width: 250, height: 350 },
+      { width: 350, height: 350, crop: "fill" },
     ]);
   } else {
     avatar = gravatar.url(email);

@@ -28,7 +28,7 @@ const contactSchema = new Schema(
       required: true,
     },
   },
-  { versionKey: false, timestamps: true }
+  { versionKey: false, timestamps: true },
 );
 
 contactSchema.post("save", handleSaveError);
@@ -37,6 +37,6 @@ contactSchema.pre("findOneAndUpdate", setUpdateOptions);
 
 contactSchema.post("findOneAndUpdate", handleSaveError);
 
-const Contact = model("contact", contactSchema);
+const Contact = model("contact", contactSchema, "phonebookContacts");
 
 module.exports = Contact;
